@@ -8,7 +8,7 @@ if (isset($_SESSION['loggedIn'])) {
 $exist = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include 'partials/dbconnect.php';
-    $firstname = $_POST["username"];
+    $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
     $username = $_POST["username"];
     $password = $_POST["password"];
