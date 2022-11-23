@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
     $username = $_POST["username"];
+    $securitycode = $_POST["securitycode"];
     $password = $_POST["password"];
     $repassword = $_POST["repassword"];
     $userNameCheck = "SELECT * from `userdetails` WHERE `User Name` = '$username'";
@@ -20,9 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $exist = true;
     } else {
         $exist = false;
-        if (($password != "") && ($password == $repassword) && ($exist == false)) {
+        if (($password != "") && ($securitycode != "") && ($password == $repassword) && ($exist == false)) {
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO `userdetails` (`First Name`, `Last Name`, `User Name`, `Password`, `Time`) VALUES ('$firstname', '$lastname', '$username', '$passwordHash', current_timestamp())";
+            $securityHash = password_hash($securitycode, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO `userdetails` (`First Name`, `Last Name`, `User Name`, `Security Code`, `Password`, `Time`) VALUES ('$firstname', '$lastname', '$username','$securityHash', '$passwordHash', current_timestamp())";
 
             $result = mysqli_query($con, $sql);
             if ($result) {
@@ -84,6 +86,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="firstname">User Name:</label>
                     <input type="text" name="username" id="username">
                     <span id="invalidU" class="hideinvalid">*Invalid UserName</span>
+                </div>
+                <div class="input-field">
+                    <label for="firstname">Security Code:</label>
+                    <input type="text" name="securitycode" id="securitycode">
+                    <span id="invalidSC" class="hideinvalid">*Invalid Security Code</span>
                 </div>
                 <div class="input-field">
                     <label for="firstname">Password:</label>

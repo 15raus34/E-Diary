@@ -31,7 +31,7 @@ if ($con) {
     echo "DataBase Connected";
 }
 
-$sql1 = "CREATE TABLE `userdetails` (`S.No.` INT(11) NOT NULL AUTO_INCREMENT , `First Name` VARCHAR(15) NOT NULL , `Last Name` VARCHAR(15) NOT NULL , `User Name` VARCHAR(11) NOT NULL , `Password` VARCHAR(225) NOT NULL , `Time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`S.No.`))";
+$sql1 = "CREATE TABLE `userdetails` (`S.No.` INT(11) NOT NULL AUTO_INCREMENT , `First Name` VARCHAR(15) NOT NULL , `Last Name` VARCHAR(15) NOT NULL , `User Name` VARCHAR(11) NOT NULL , `Security Code` VARCHAR(225) NOT NULL , `Password` VARCHAR(225) NOT NULL , `Time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`S.No.`))";
 
 $result1 = mysqli_query($con, $sql1);
 
@@ -42,8 +42,10 @@ $result2 = mysqli_query($con, $sql2);
 //Creating Admin 
 $username = "admin";
 $password = "admin";
+$securitycode = "admin";
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-$sql3 = "INSERT INTO `userdetails` (`First Name`, `Last Name`, `User Name`, `Password`, `Time`) VALUES ('', '', '$username', '$passwordHash', current_timestamp())";
+$securityHash = password_hash($securitycode, PASSWORD_DEFAULT);
+$sql3 = "INSERT INTO `userdetails` (`First Name`, `Last Name`, `User Name`, `Security Code`, `Password`, `Time`) VALUES ('', '', '$username','$securityHash', '$passwordHash', current_timestamp())";
 
 $result3 = mysqli_query($con, $sql3);
 

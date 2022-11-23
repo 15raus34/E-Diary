@@ -1,6 +1,7 @@
 let firstname = document.getElementById("firstname");
 let lastname = document.getElementById("lastname");
 let username = document.getElementById("username");
+let securitycode = document.getElementById("securitycode");
 let password = document.getElementById("password");
 let repassword = document.getElementById("repassword");
 let aggrement = document.getElementById("aggrement");
@@ -32,6 +33,18 @@ username.addEventListener("blur",()=>{
     }
     else{
         document.getElementById("invalidU").style.display = "none";
+    }
+});
+
+
+
+securitycode.addEventListener("blur",()=>{
+    if(securitycode.value.length<4){
+        console.log("Milena bro");
+        document.getElementById("invalidSC").style.display = "block";
+    }
+    else{
+        document.getElementById("invalidSC").style.display = "none";
     }
 });
 
