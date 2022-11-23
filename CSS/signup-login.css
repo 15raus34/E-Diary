@@ -58,7 +58,16 @@ nav img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* flex-direction: column; */
+}
+.data-field-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+.data-field p{
+  margin-right: 10px;
+  margin-bottom: 1px;
 }
 .checkbox {
   margin: 20px 2px 10px 10px;

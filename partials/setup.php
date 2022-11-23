@@ -39,8 +39,16 @@ $sql2 = "CREATE TABLE `usersdata` (`S.No.` INT(11) NOT NULL AUTO_INCREMENT , `Us
 
 $result2 = mysqli_query($con, $sql2);
 
-if ($result1 && $result2) {
-    echo "TABLEs Created";
+//Creating Admin 
+$username = "admin";
+$password = "admin";
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+$sql3 = "INSERT INTO `userdetails` (`First Name`, `Last Name`, `User Name`, `Password`, `Time`) VALUES ('', '', '$username', '$passwordHash', current_timestamp())";
+
+$result3 = mysqli_query($con, $sql3);
+
+if ($result1 && $result2 && $result3) {
+    echo "TABLEs AND ADMIN Created";
     header("location: ../index.php");
 }
 ?>
